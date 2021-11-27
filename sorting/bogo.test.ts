@@ -21,7 +21,7 @@ const bogoSort = (items: number[]) => {
     for (let i = list.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
 
-      return ([list[i], list[j]] = [list[j], list[i]])
+      ;[list[i], list[j]] = [list[j], list[i]]
     }
   }
 
@@ -34,8 +34,8 @@ const bogoSort = (items: number[]) => {
   return list
 }
 
-describe('Test', () => {
-  it('Bogo Sort', () => {
+describe.skip('Bogo sort', () => {
+  it('should sort an unserted array', () => {
     expect(bogoSort(numbers)).toEqual([...numbers].sort((a, b) => a - b))
   })
 })
