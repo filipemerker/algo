@@ -1,5 +1,5 @@
 # 📚 
 
-My somewhat public commitment to study data structures and algorithms.
+This is my somewhat public commitment to try and suck less at data structures and algorithms.
 
 🤪
