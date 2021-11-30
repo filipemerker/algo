@@ -30,11 +30,10 @@ const bogoSort = (items: number[]) => {
     shuffle(list)
   }
 
-  console.log(attempts)
   return list
 }
 
-describe.skip('Bogo sort', () => {
+describe('Bogo sort', () => {
   it('should sort an unserted array', () => {
     expect(bogoSort(numbers)).toEqual([...numbers].sort((a, b) => a - b))
   })
