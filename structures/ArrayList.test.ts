@@ -1,20 +1,40 @@
 class ArrayList {
-  length: number
-  data: any
+  length: number;
+  [key: number]: any
+
   constructor(...elements: any[]) {
     this.length = 0
-    this.data = {}
 
     elements.forEach((element) => {
-      this.data[this.length] = element
+      this[this.length] = element
       this.length++
     })
   }
 
-  push = (element: any) => {}
-  pop = () => {}
-  get = (element: any) => {}
-  remove = (element: any) => {}
+  push = (element: any) => {
+    const index = this.length
+
+    this.length++
+    this[index] = element
+  }
+
+  pop = () => {
+    const index = this.length - 1
+    const item = this[index]
+
+    delete this[index]
+    this.length--
+
+    return item
+  }
+
+  remove = (index: number) => {
+    for (let i = index; i < this.length; i++) {
+      this[i] = this[i + 1]
+    }
+
+    this.pop()
+  }
 }
 
 describe('Array List', () => {
@@ -35,8 +55,8 @@ describe('Array List', () => {
     list.push('b')
 
     expect(list.length).toBe(2)
-    expect(list.get(0)).toBe('a')
-    expect(list.get(1)).toBe('b')
+    expect(list[0]).toBe('a')
+    expect(list[1]).toBe('b')
   })
 
   it('should have a push method that pushes to the end of the list', () => {
@@ -48,8 +68,8 @@ describe('Array List', () => {
     list.push('b')
 
     expect(list.length).toBe(2)
-    expect(list.get(0)).toBe('a')
-    expect(list.get(1)).toBe('b')
+    expect(list[0]).toBe('a')
+    expect(list[1]).toBe('b')
   })
 
   it('should have a pop method that removes from the end of the list', () => {
@@ -67,11 +87,16 @@ describe('Array List', () => {
     const list = new ArrayList('a', 'b', 'c', 'd', 'e')
 
     expect(list.length).toBe(5)
-    expect(list.get(3)).toBe('c')
+    expect(list[2]).toBe('c')
 
-    list.remove(3)
+    list.remove(2)
 
     expect(list.length).toBe(4)
-    expect(list.get(3)).toBe('d')
+    expect(list[2]).toBe('d')
+
+    list.remove(2)
+
+    expect(list.length).toBe(3)
+    expect(list[2]).toBe('e')
   })
 })
