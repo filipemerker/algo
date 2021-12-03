@@ -20,7 +20,7 @@ const mergeSort = (items: number[]) => {
       return list
     }
 
-    const half = Math.ceil(list.length / 2)
+    const half = ~~(list.length / 2)
     const left = list.slice(0, half)
     const right = list.slice(half)
 
